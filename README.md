@@ -19,9 +19,10 @@
   <body>
     <div class="box">
       <h1>GitHub Pages Test</h1>
-      <p>I am a Biomedical Engineering student at the University of Waterloo with an avid interest in the intersection of technical design, software development, and human-centric engineering. I am driven by the challenge of translating complex concepts into tangible solutions—whether through physical prototypes or digital systems.
+      <p>Hi!👋 I'm Warren, a Biomedical Engineering student at the University of Waterloo interested in medical devices and UX research. I am also passionate about linkage-based mechanical designs, sketching automatons replicating movements of birds and appendages of insects. 
 
-Beyond the technical stack, I bring a unique perspective from the world of stage magic and handcrafting. I apply the same meticulous attention to detail and user-engagement required for a performance to my engineering projects.</p>
+      In my free time, I pursue long-term music composition projects and piano playing. 
+      </p>
     </div>
   </body>
 </html>
