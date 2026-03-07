@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Warren Liu - Image Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Grid layout */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* bigger min width */
+      gap: 25px;
+    }
+
+    .image-card {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-card img {
+      width: auto;   
+      max-width: 100%;  /* let image fill card width */
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .image-desc {
+      margin-top: 10px;
+      font-size: 15px;  /* slightly bigger text */
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Gallery</h1>
+
+  <div class="image-grid">
+
+    <div class="image-card">
+      <img src="pictures/night scene.png" alt="night scene">
+      <div class="image-desc">"Night Scene" - 2024</div>
+    </div>
+
+    <div class="image-card">
+      <img src="pictures/Landscape of Northern Ireland.jpg" alt="kinbane">
+      <div class="image-desc">"Kinbane Castle" - 2024</div>
+    </div>
+
+    <div class="image-card">
+      <img src="pictures/Scene of river in autumn.jpg" alt="river">
+      <div class="image-desc">"Beside a River in Autumn" - 2024</div>
+    </div>
+
+    <div class="image-card">
+      <img src="pictures/pencil sketch 1.jpg" alt="pencil sketch">
+      <div class="image-desc">"Pencil Sketch" - 2025</div>
+    </div>
+
+    <div class="image-card">
+      <img src="pictures/victoria island scene.jpg" alt="victoria">
+      <div class="image-desc">"Garden" - 2025</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Warren Liu - Projects</title>
+  <style>
+    p {
+      font-size: 15px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 10;
+      display: flex;
+    }
+
+    /* --- TOP NAVBAR --- */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: #ffffff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      font-weight: bold;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-right a {
+        margin-left: 20px;
+        margin-right: 40px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .nav-right a:hover {
+        color: #0077cc;
+      }
+
+
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      background: #ffffff;
+      padding: 20px 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-block {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .contact-block img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .contact-block img:hover {
+      opacity: 0.7;
+    }
+
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 1px;
+      margin-top: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 15px 0;
+      margin-right: 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      color: #0077cc;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .content {
+      margin-left: 260px;
+      margin-top: 50px;
+      padding: 40px;
+      width: calc(100% - 260px);
+    }
+
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .section-buttons {
+    margin-top: 1px;
+    display: flex;
+    justify-content: center; /* centers the buttons */
+    gap: 20px;
+    }
+
+    /* --- BUTTONS --- */
+    .gradient-btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 6px 14px rgba(0,0,0,0); /* prevents shifting */
+    }
+
+    .gradient-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(90, 54, 137, 0.15);
+    }
+
+    /* --- PROJECT GRID --- */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    /* --- PROJECT CARD --- */
+    .project-card {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+    }
+
+    .project-card img {
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-top: -20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <div class="topnav">
+    <div class="nav-left">
+      <h2>Warren Liu - Portfolio</h2>
+    </div>
+
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="music.html">My Music</a>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2 style="block-size: 1;">Academic Afiliations</h2>
+    <a href="https://uwaterloo.ca/biomedical-engineering/">BME at UWaterloo</a>
+
+    <br>
+    <h2>Sections</h2>
+    <a href="#academic">Academic Projects</a>
+    <a href="#personal">Personal Projects</a>
+    
+    <br><br>
+    <h2>Socials:</h2>
+      <div class="contact-block">
+        <a href="https://github.com/WrenLepus" target="_blank">
+          <img src="icons/github.png" alt="GitHub">
+        </a>
+
+        <a href="https://ca.linkedin.com/in/warren-liu-4372143a2" target="_blank">
+          <img src="icons/linkedin.png" alt="LinkedIn">
+        </a>
+
+        <a href="mailto:w65liu@uwaterloo.ca">
+          <img src="icons/email.png" alt="Email">
+        </a>
+
+        <a href="https://www.instagram.com/wrenlepus/" target="_blank">
+          <img src="icons/instagram.png" alt="Instagram">
+        </a>
+
+        <a href="https://www.youtube.com/@LepusCompositions" target="_blank">
+          <img src="icons/youtube.png" alt="YouTube">
+        </a>
+      </div>
+
+
+  </div>
+  
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <h1>Project Spotlight</h1>
+
+    <div class="box" id="academic">
+      <h2>Academic Projects</h2>
+
+      <div class="project-grid">
+
+        <div class="project-card">
+          <img src="pictures/boardgame.jpg" alt="boardgame">
+          
+          <h3>Boardgame Accessibility</h3>
+          <p style="color:#555; font-size:14px;">Sept. – Dec. 2025</p>
+
+          <p style="line-height: 1.5;">
+            Redesigned the game Battleship with team to make it more accessible 
+            for children with dyspraxia. The project focused on 
+            applying user-centered design principles to identify 
+            accessibility barriers and develop gameplay interactions 
+            that reduce the need for fine motor control while 
+            maintaining an engaging experience.
+          </p>
+
+          <ul style="color:#555; padding-left:25px;">
+            <li>Applied an iterative design process including empathizing, ideation, rapid prototyping, testing, and evaluation.</li>
+            <li>Conducted quantitative analysis using Excel to compare design alternatives.</li>
+            <li>Developed a C++ program to automate normalization and metric weighting for a QFD table.</li>
+          </ul>
+
+        </div>
+
+        <div class="project-card">
+          <img src="pictures/rock.png" alt="rock">
+          <h3>3D-printed Puzzle</h3>
+          <p style="color:#555; font-size:14px;">Sept. – Dec. 2025</p>
+          <p style="line-height: 1.5;">
+            Designed a multi-component 3D puzzle involving at least 5 unique pieces
+            in a team setting. End product contained at least one Canadian motif. 
+          </p>
+
+          <ul style="color:#555; padding-left:25px;">
+            <li>Worked with SolidWorks surface modeling.</li>
+            <li>Gained knowledge in working with complex shapes.</li>
+            <li>Worked with SolidWorks Asembly and error tolerence.</li>
+            <li>Presented end product in presentation.</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <img src="pictures/xwing 1.png" alt="xwing">
+          <h3>3D-printed Puzzle</h3>
+          <p style="color:#555; font-size:14px;">Nov. 2025</p>
+          <p>
+            Modeled the fictional spacecraft, X-Wing, from Star Wars the original series.
+          </p>
+
+          <ul style="color:#555; padding-left:25px;">
+            <li>Made calculation on pieces joints.</li>
+            <li>Gained experience with mate functions in SolidWorks.</li>
+            <li>Created accurate orthographic views and BOM table compliant to ANSI standards.</li>
+          </ul>
+          <div class="section-buttons">
+            <a class="gradient-btn" onclick="window.open('https://drive.google.com/drive/folders/1vWi49exrxort192pUldvrXj2YjS7ABzq?usp=sharing', '_blank')">View Images →</a>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="pictures/code.png" alt="code">
+          <h3>Online Portfolio</h3>
+          <p style="color:#555; font-size:14px;">Feb. 2026 - ongoing</p>
+          <p style="line-height: 1.5;">
+            This website is current an ongoing project! 
+            This is my first time making a website and I hope you, dear viewer, find this helpful in know me better!
+          </p>
+
+          <ul style="color:#555; padding-left:25px;">
+            <li>Using Visual Studio Code for HTML and CSS.</li>
+            <li>Working with GitHub.</li>
+            <li>Learned about wireframing.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="box" id="personal">
+    <h2>Personal Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <img src="pictures/mechanism.png" alt="mechanism">
+          
+          <h3>Models & Sketches</h3>
+          <p style="color:#555; font-size:14px;">2018 - 2025</p>
+          <p style="line-height: 1.5;">
+            From a young age, I was fascinated by mechanical design and construction. 
+            I created my own models using materials found at home, which allowed me 
+            to learn hands-on building techniques while developing my spatial reasoning 
+            and sketching skills.
+          </p>
+          <div class="section-buttons">
+            <a class="gradient-btn" onclick="window.open('https://drive.google.com/file/d/1PmIrMeL_rU-PflPFj-_I5v-DIA6B6uFj/view?usp=sharing', '_blank')">View Images →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="pictures/Landscape of Northern Ireland.jpg" alt="art">
+          
+          <h3>Artistic Outlet & Lettres of Kindness</h3>
+          <p style="color:#555; font-size:14px;">Feb. 2024 - ongoing</p>
+          <p style="line-height: 1.5;">
+            In my free time, I create art using mediums such as painting and pencil sketching. 
+            Upon completion, I contribute by sending photos of my work to the Coquitlam 
+            ‘Letters of Kindness’ program, supporting and brightening the lives of local seniors.
+          </p>
+          <div class="section-buttons">
+            <a class="gradient-btn" href="gallery.html">View Gallery →</a>
+          </div>
+        </div>
+      </div>
+      
+
+        
+
+
+    </div>
+
+</body>
+</html>
