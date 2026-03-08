@@ -97,6 +97,11 @@
       color: #0077cc;
     }
 
+    .sidebar-bottom {
+      position: absolute;
+      bottom: 125px;
+    }
+
     /* --- MAIN CONTENT --- */
     .content {
       margin-left: 260px;
@@ -130,7 +135,7 @@
       color: white;
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 6px 14px rgba(0,0,0,0); /* prevents shifting */
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0); /* prevents shifting */
     }
 
     .gradient-btn:hover {
@@ -174,7 +179,11 @@
     <a href="#compositions">Compositions</a>
     
     <br><br>
-    <h2>Socials:</h2>
+
+    <div class="sidebar-bottom">
+
+      <h2>Socials:</h2>
+
       <div class="contact-block">
         <a href="https://github.com/WrenLepus" target="_blank">
           <img src="icons/github.png" alt="GitHub">
@@ -197,22 +206,41 @@
         </a>
       </div>
 
+    </div>
+
 
   </div>
   
   <!-- MAIN CONTENT -->
   <div class="content">
 
-    <h1>Music</h1>
+    <h1>My Music</h1>
 
     <div class="box" id="introduction">
       <h2>Introduction</h2>
 
       <div class="project-grid">
-        <p><b>Hello! </b>This is one of the places where I share my music & compositions!</p>
-        <br>
-        <p>Check out my YouTube channel: </p>
-        <br>
+        <p><b>Hello! </b>This is one of the places where I share my music & compositions! 
+          I started learning music at seven and was almost immediately enthralled by what it had to offer.</p>
+        
+        <p>After completing RCM Level 8 in piano and music theory, I continued to self-learn piano and picked up composition.
+          Over the years, I am lucky to have <b>over a thousand people</b> follow my journey on YouTube.
+        </p>
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+
+          <img src="pictures/youtube.png"
+              style="border-radius:10px;"
+              width="500px"
+              height="auto"
+              alt="youtube page">
+
+          <img src="pictures/score.png"
+              style="border-radius:10px;"
+              width="350px"
+              height="auto"
+              alt="score">
+
+        </div>
         <div class="section-buttons">
             <a class="gradient-btn" onclick="window.open('https://www.youtube.com/@LepusCompositions', '_blank')">View Channel →</a>
         </div>
@@ -223,14 +251,42 @@
     <h2>Compositions</h2>
       <div class="project-grid">
 
-        <h2 style="color:#368634">Coming Soon!</h2>
+        <p>I view music as an approximation of the language of the soul. 
+          For this reason, the music I compose must remain sincere and faithful to my inner voice. 
+          Each piece becomes an attempt to translate personal emotions and reflections into sound.
+        </p>
+        <br>
 
+        <p>Below is a project I've worked on for over a year: Piano Sonata No. 1</p>
+        <h4>First movement: <i>Allegro con fuoco</i></h4>
+        <br>
+        <video controls width="600">
+          <source src="videos/Piano Sonata no. 1, I. Allegro con fuoco _ original composition.mp4" type="video/mp4">
+        </video>
 
+        <br><br>
 
+        <h4>Second movement: <i>Andante sostenuto</i></h4>
+        <br>
+        <video controls width="600">
+          <source src="videos/Piano Sonata no.1, II_ Andante sostenuto _ original composition.mp4" type="video/mp4">
+        </video>
+
+        <br><br>
+
+        <h4>Third movement: <i>Intermezzo</i></h4>
+        <br>
+        <video controls width="600">
+          <source src="videos/Piano Sonata no. 1, III_ Intermezzo _ original composition.mp4" type="video/mp4">
+        </video>
+
+        <br><br>
+
+        <h4>Fourth movement: <i>Rondo quasi fantasia & fugue</i></h4>
+        <p><i>(in process of learning)</i></p>
       </div>
 
     </div>
 
 </body>
 </html>
-
