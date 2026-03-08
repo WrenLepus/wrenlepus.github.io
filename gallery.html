@@ -31,6 +31,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      box-shadow: 0 6px 14px rgba(0,0,0,0);
     }
 
     .image-card img {
@@ -46,12 +47,41 @@
       color: #555;
       text-align: center;
     }
+
+        /* --- BUTTONS --- */
+    .gradient-btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 6px 14px rgba(0,0,0,0);
+    }
+
+    .gradient-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(90, 54, 137, 0.15);
+    }
+
+    /* --- PROJECT GRID --- */
+    .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+    }
+
   </style>
 </head>
 <body>
 
   <h1>Warren's Image Gallery</h1>
-
+  <div class="section-buttons"> 
+      <a class="gradient-btn" href="projects.html">← Back</a>
+  </div>
+  <br>
   <div class="image-grid">
 
     <div class="image-card">
@@ -71,7 +101,7 @@
 
     <div class="image-card">
       <img src="pictures/pencil sketch 1.jpg" alt="pencil sketch">
-      <div class="image-desc">"Pencil Sketch" - 2025</div>
+      <div class="image-desc">Pencil Sketch of "View of the Łazienki Palace in summer" - 2026</div>
     </div>
 
     <div class="image-card">
@@ -82,5 +112,4 @@
   </div>
 
 </body>
-
 </html>
