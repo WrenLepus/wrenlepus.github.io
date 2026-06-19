@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Warren Liu - Image Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="topnav">
+    <div class="nav-brand">Warren Liu</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="music.html">Music</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Gallery</span>
+      <a href="projects.html">← Back to Projects</a>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-section">
+        <span class="sidebar-label">Socials</span>
+        <div class="contact-block">
+          <a href="https://github.com/WrenLepus" target="_blank" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://ca.linkedin.com/in/warren-liu-4372143a2" target="_blank" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:w65liu@uwaterloo.ca" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="https://www.instagram.com/wrenlepus/" target="_blank" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@LepusCompositions" target="_blank" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <div class="gallery-header">
+      <h1>Warren's Image Gallery</h1>
+      <a class="gradient-btn" href="projects.html">← Back</a>
+    </div>
+
+    <div class="image-grid">
+
+      <div class="image-card">
+        <img src="pictures/night scene.png" alt="night scene">
+        <div class="image-desc">"Night Scene" - 2024</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/Landscape of Northern Ireland.jpg" alt="kinbane">
+        <div class="image-desc">"Kinbane Castle" - 2024</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/Scene of river in autumn.jpg" alt="river">
+        <div class="image-desc">"Beside a River in Autumn" - 2024</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/pencil sketch 1.jpg" alt="pencil sketch">
+        <div class="image-desc">Pencil Sketch of "View of the Łazienki Palace in summer" - 2026</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/victoria island scene.jpg" alt="victoria">
+        <div class="image-desc">"Garden" - 2025</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/rabbit.jpg" alt="Cute Rabbits">
+        <div class="image-desc">"Rabbits" - 2024</div>
+      </div>
+
+      <div class="image-card">
+        <img src="pictures/message in the foliage.png" alt="message in foliage">
+        <div class="image-desc">"Message in the Foliage" - 2024</div>
+        <p>1st place in "Truth & Reconciliation" competition</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.theme-toggle');
+      const icon = toggle ? toggle.querySelector('i') : null;
+      const html = document.documentElement;
+      const stored = localStorage.getItem('theme');
+
+      if (stored) {
+        html.setAttribute('data-theme', stored);
+      }
+
+      function updateIcon() {
+        if (!icon) return;
+        if (html.getAttribute('data-theme') === 'dark') {
+          icon.className = 'fa-solid fa-sun';
+          toggle.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+          icon.className = 'fa-solid fa-moon';
+          toggle.setAttribute('aria-label', 'Switch to dark mode');
+        }
+      }
+
+      updateIcon();
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          const next = isDark ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateIcon();
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
