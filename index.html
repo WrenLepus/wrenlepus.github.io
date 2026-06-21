@@ -330,29 +330,107 @@
       const container = hero ? hero.closest('.hero-scroll-container') : null;
       if (!hero || !container) return;
 
-      function updateHero() {
-        const containerTop = container.offsetTop;
-        const animationDistance = window.innerHeight * 0.7;
-        const scrolled = Math.max(0, window.scrollY - containerTop);
-        const progress = Math.max(0, Math.min(1, scrolled / animationDistance));
-        hero.style.setProperty('--hero-progress', progress.toFixed(3));
-        hero.classList.toggle('scrolled', progress > 0.9);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const INTRO_THRESHOLD = 600; // signed scroll distance for full intro 0 → 1
+      const LERP_FACTOR = 0.12;
+      const html = document.documentElement;
+      const body = document.body;
+
+      let cumulativeDelta = 0;
+      let targetProgress = 0;
+      let currentProgress = 0;
+      let isComplete = false;
+      let rafId = null;
+      let touchStartY = 0;
+      let lastTouchY = 0;
+
+      function applyProgress(value) {
+        hero.style.setProperty('--hero-progress', value.toFixed(4));
+        hero.classList.toggle('scrolled', value > 0.9);
       }
 
-      let ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          window.requestAnimationFrame(function () {
-            updateHero();
-            ticking = false;
-          });
-          ticking = true;
+      function updateTarget(delta) {
+        cumulativeDelta += delta;
+        targetProgress = Math.max(0, Math.min(1, cumulativeDelta / INTRO_THRESHOLD));
+
+        if (targetProgress >= 1 && !isComplete) {
+          completeIntro();
         }
-      }, { passive: true });
+      }
 
-      window.addEventListener('resize', updateHero);
+      function renderLoop() {
+        const diff = targetProgress - currentProgress;
+        if (Math.abs(diff) > 0.0005) {
+          currentProgress += diff * LERP_FACTOR;
+          applyProgress(currentProgress);
+        } else if (currentProgress !== targetProgress) {
+          currentProgress = targetProgress;
+          applyProgress(currentProgress);
+        }
+        rafId = requestAnimationFrame(renderLoop);
+      }
 
-      updateHero();
+      function unlockScroll() {
+        body.classList.remove('intro-locked');
+        html.classList.remove('intro-locked');
+        body.style.paddingRight = '';
+      }
+
+      function completeIntro() {
+        isComplete = true;
+        unlockScroll();
+      }
+
+      function lockScroll() {
+        const scrollbarWidth = window.innerWidth - html.clientWidth;
+        html.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
+        html.classList.add('intro-locked');
+        body.classList.add('intro-locked');
+        window.scrollTo(0, 0);
+      }
+
+      function handleWheel(e) {
+        if (isComplete) return;
+        e.preventDefault();
+        updateTarget(e.deltaY);
+      }
+
+      function handleTouchStart(e) {
+        touchStartY = e.touches[0].clientY;
+        lastTouchY = touchStartY;
+      }
+
+      function handleTouchMove(e) {
+        if (isComplete) return;
+        const currentY = e.touches[0].clientY;
+        const delta = lastTouchY - currentY;
+        lastTouchY = currentY;
+
+        if (Math.abs(delta) > 0) {
+          e.preventDefault();
+          updateTarget(delta);
+        }
+      }
+
+      if (prefersReducedMotion) {
+        applyProgress(1);
+        return;
+      }
+
+      lockScroll();
+      applyProgress(0);
+      rafId = requestAnimationFrame(renderLoop);
+
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+      window.addEventListener('resize', function () {
+        if (!isComplete) {
+          const scrollbarWidth = window.innerWidth - html.clientWidth;
+          html.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
+        }
+      });
     })();
 
     (function () {

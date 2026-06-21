@@ -103,6 +103,23 @@
 
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" aria-label="Close gallery view">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="lightbox-prev" type="button" aria-label="Previous image">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="">
+      <button class="lightbox-next" type="button" aria-label="Next image">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
   <script>
     (function () {
       const toggle = document.querySelector('.theme-toggle');
@@ -136,6 +153,84 @@
           updateIcon();
         });
       }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.image-card');
+      if (!cards.length) return;
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const prevBtn = lightbox.querySelector('.lightbox-prev');
+      const nextBtn = lightbox.querySelector('.lightbox-next');
+
+      const slides = Array.from(cards).map(card => {
+        const img = card.querySelector('img');
+        const desc = card.querySelector('.image-desc');
+        return {
+          src: img ? img.src : '',
+          alt: img ? img.alt : '',
+          caption: desc ? desc.textContent : ''
+        };
+      });
+
+      let currentIndex = 0;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox();
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function updateLightbox() {
+        const slide = slides[currentIndex];
+        lightboxImg.src = slide.src;
+        lightboxImg.alt = slide.alt;
+        lightboxCaption.textContent = slide.caption;
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateLightbox();
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateLightbox();
+      }
+
+      cards.forEach((card, index) => {
+        card.addEventListener('click', () => openLightbox(index));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox || e.target.closest('.lightbox-content') === null) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
     })();
   </script>
 

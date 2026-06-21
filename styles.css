@@ -1,19 +1,19 @@
 :root {
-  --bg: #f5f7fa;
+  --bg: #fff8f0;
   --surface: #ffffff;
-  --text: #1f2937;
-  --text-muted: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.08);
-  --accent-active: rgba(37, 99, 235, 0.12);
-  --border: #e5e7eb;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --gradient-start: #6a11cb;
-  --gradient-end: #2575fc;
-  --gradient-shadow: rgba(37, 99, 235, 0.25);
+  --text: #2d1f14;
+  --text-muted: #7a5c44;
+  --accent: #e85913;
+  --accent-hover: #c7460d;
+  --accent-soft: rgba(232, 89, 19, 0.10);
+  --accent-active: rgba(232, 89, 19, 0.16);
+  --border: #f0d8c0;
+  --shadow-sm: 0 1px 2px rgba(45, 31, 20, 0.04);
+  --shadow-md: 0 4px 12px rgba(45, 31, 20, 0.06);
+  --shadow-lg: 0 10px 30px rgba(45, 31, 20, 0.08);
+  --gradient-start: #f59e0b;
+  --gradient-end: #e85913;
+  --gradient-shadow: rgba(232, 89, 19, 0.25);
   --radius: 12px;
   --radius-sm: 8px;
   --nav-height: 64px;
@@ -21,21 +21,21 @@
 }
 
 [data-theme="dark"] {
-  --bg: #0b1120;
-  --surface: #151e32;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #7dd3fc;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-  --accent-active: rgba(56, 189, 248, 0.18);
-  --border: #334155;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
-  --gradient-start: #6366f1;
-  --gradient-end: #38bdf8;
-  --gradient-shadow: rgba(56, 189, 248, 0.25);
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --text: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --accent: #ffffff;
+  --accent-hover: #d0d0d0;
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  --accent-active: rgba(255, 255, 255, 0.12);
+  --border: #2a2a2a;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.7);
+  --gradient-start: #e5e5e5;
+  --gradient-end: #ffffff;
+  --gradient-shadow: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -232,7 +232,7 @@ a:hover {
 .content {
   margin-left: var(--sidebar-width);
   margin-top: var(--nav-height);
-  padding: 0 40px 40px 40px;
+  padding: 17px 40px 40px 40px;
   width: calc(100% - var(--sidebar-width));
   min-height: calc(100vh - var(--nav-height));
 }
@@ -322,7 +322,7 @@ a:hover {
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
-  color: white;
+  color: rgb(35, 35, 35);
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   border: none;
@@ -536,6 +536,14 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent);
+  border-color: var(--accent);
 }
 
 .image-card img {
@@ -543,6 +551,11 @@ a:hover {
   height: 260px;
   object-fit: cover;
   border-radius: var(--radius-sm);
+  transition: transform 0.25s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.03);
 }
 
 .image-desc {
@@ -568,6 +581,139 @@ a:hover {
 
 .gallery-header h1 {
   margin: 0;
+}
+
+/* --- LIGHTBOX --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 64px 80px;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transform: scale(0.92);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  z-index: 2010;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 24px;
+  font-size: 42px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.85;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 56px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.7;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+  left: 16px;
+}
+
+.lightbox-next {
+  right: 16px;
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-sm);
+  max-width: 80%;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .lightbox-content {
+    padding: 56px 48px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 40px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
 }
 
 /* --- RESPONSIVE HELPERS --- */
@@ -692,7 +838,7 @@ img {
 /* --- HERO ANIMATION --- */
 .hero-scroll-container {
   position: relative;
-  height: 250vh;
+  height: 100vh;
   margin-bottom: 24px;
 }
 
@@ -778,6 +924,17 @@ img {
 
 .hero.animate.scrolled .hero-text {
   pointer-events: auto;
+}
+
+/* Intro scroll lock: prevent scrolling until hero animation finishes */
+html.intro-locked,
+body.intro-locked {
+  overflow: hidden;
+  height: 100%;
+}
+
+body.intro-locked {
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 /* Reduced motion preference */
