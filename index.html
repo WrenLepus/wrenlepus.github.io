@@ -36,9 +36,9 @@
       <span class="sidebar-label">Sections</span>
       <a href="#about">About Me</a>
       <a href="#resume">Resume</a>
-      <a href="#awards">Awards</a>
-      <a href="#certificates">Certificates</a>
       <a href="#education">Education</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#awards">Awards</a>
     </div>
 
     <div class="sidebar-bottom">
@@ -111,57 +111,170 @@
         <a class="gradient-btn" href="music.html">View My Music →</a>
       </div>
       <br><br>
-    </div>
+      <section class="resume-section" id="resume">
+        <h1>Resume</h1>
 
-    <div class="box" id="resume">
-      <h1>Resume</h1>
+        <p>You can view my resume below or download it.</p>
 
-      <p>You can view my resume below or download it.</p>
+        <div class="resume-dropdown">
+          <button class="resume-toggle" type="button" aria-expanded="false" aria-controls="resume-panel">
+            <span>View Resume</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="resume-panel" id="resume-panel">
+            <div class="resume-panel-inner">
+              <iframe
+                src="files/resume.pdf"
+                width="100%"
+                height="600px"
+                style="border: 1px solid var(--border); border-radius: 6px;">
+              </iframe>
 
-      <div class="resume-dropdown">
-        <button class="resume-toggle" type="button" aria-expanded="false" aria-controls="resume-panel">
-          <span>View Resume</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="resume-panel" id="resume-panel">
-          <div class="resume-panel-inner">
-            <iframe
-              src="files/resume.pdf"
-              width="100%"
-              height="600px"
-              style="border: 1px solid var(--border); border-radius: 6px;">
-            </iframe>
+              <br><br>
 
-            <br><br>
-
-            <a class="gradient-btn" href="files/resume.pdf" target="_blank">
-              Download Resume
-            </a>
+              <a class="gradient-btn" href="files/resume.pdf" target="_blank">
+                Download Resume
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- AWARDS -->
-    <div class="box" id="awards">
-      <h1>Awards</h1>
-      <ul>
-        <li><strong>Recipient, Mayor's Community Fund</strong> — May 2025</li>
-        <li><strong>3rd Place, Port Moody Youth Orchestra Music Competition</strong> — December 2024</li>
-        <li><strong>1st Place, Truth and Reconciliation Art Prize</strong> — June 2024</li>
-        <li><strong>Curricular Excellence in Math & Calculus Honours</strong> — 2021–2025</li>
-      </ul>
-
-      <div class="award-photos" id="award-photos">
-        <img src="pictures/scholarship.jpg" alt="mayor">
-        <img src="pictures/pmyo.png" alt="concert">
-      </div>
-
+      </section>
     </div>
 
     <!-- EDUCATION + EXPERIENCE TIMELINE -->
     <div class="box" id="education">
       <h1>Education & Experience</h1>
+
+      <section class="career-timeline" aria-labelledby="career-timeline-heading">
+        <div class="career-timeline-header">
+          <div>
+            <h2 id="career-timeline-heading">Timeline</h2>
+            <p>Scroll horizontally to see full timeline.</p>
+          </div>
+
+          <div class="career-timeline-controls" aria-label="Timeline navigation">
+            <button class="timeline-scroll-button timeline-scroll-button--previous" type="button" aria-label="Scroll timeline backward">
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <button class="timeline-scroll-button timeline-scroll-button--next" type="button" aria-label="Scroll timeline forward">
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="career-timeline-frame">
+          <span class="timeline-lane-label timeline-lane-label--experience">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            Experience
+          </span>
+          <span class="timeline-lane-label timeline-lane-label--education">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            Education
+          </span>
+
+          <div
+            class="career-timeline-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Education and experience timeline, September 2021 to June 2030"
+          >
+            <div
+              class="career-timeline-canvas"
+              data-domain-start="2021-09"
+              data-domain-end="2030-07"
+            >
+              <div class="timeline-calendar" aria-hidden="true"></div>
+              <div class="timeline-axis" aria-hidden="true"></div>
+
+              <button
+                class="timeline-period timeline-period--experience"
+                type="button"
+                data-start="2022-01"
+                data-end="2025-06"
+                data-kind="Experience"
+                data-title="Academic Tutor (School-Hired)"
+                data-dates="January 2022 – June 2025"
+                aria-label="Academic Tutor (School-Hired), January 2022 to June 2025"
+                aria-expanded="false"
+              >
+                <span class="timeline-period-surface">
+                  <span class="timeline-period-title">Academic Tutor</span>
+                </span>
+              </button>
+
+              <button
+                class="timeline-period timeline-period--experience"
+                type="button"
+                data-start="2024-09"
+                data-end="2025-06"
+                data-kind="Experience"
+                data-title="STEM Club Leader"
+                data-dates="September 2024 – June 2025"
+                aria-label="STEM Club Leader, September 2024 to June 2025"
+                aria-expanded="false"
+              >
+                <span class="timeline-period-surface">
+                  <span class="timeline-period-title">STEM Club Leader</span>
+                </span>
+              </button>
+
+              <button
+                class="timeline-period timeline-period--experience"
+                type="button"
+                data-start="2025-01"
+                data-end="2025-06"
+                data-kind="Experience"
+                data-title="Science Peer Tutor"
+                data-dates="January 2025 – June 2025"
+                aria-label="Science Peer Tutor, January 2025 to June 2025"
+                aria-expanded="false"
+              >
+                <span class="timeline-period-surface">
+                  <span class="timeline-period-title">Science Peer Tutor</span>
+                </span>
+              </button>
+
+              <button
+                class="timeline-period timeline-period--education"
+                type="button"
+                data-start="2021-09"
+                data-end="2025-06"
+                data-kind="Education"
+                data-title="Pinetree Secondary School"
+                data-dates="September 2021 – June 2025"
+                data-detail="Top 2 percent in graduating class of approximately 380."
+                aria-label="Pinetree Secondary School, September 2021 to June 2025. Top 2 percent in graduating class of approximately 380."
+                aria-expanded="false"
+              >
+                <span class="timeline-period-surface">
+                  <span class="timeline-period-title">Pinetree Secondary School</span>
+                </span>
+              </button>
+
+              <button
+                class="timeline-period timeline-period--education"
+                type="button"
+                data-start="2025-09"
+                data-end="2030-06"
+                data-kind="Education"
+                data-title="University of Waterloo"
+                data-dates="September 2025 – June 2030"
+                aria-label="University of Waterloo, September 2025 to June 2030"
+                aria-expanded="false"
+              >
+                <span class="timeline-period-surface">
+                  <span class="timeline-period-title">University of Waterloo</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="timeline-credit">
+          UI credit:
+          <a href="https://github.com/vasturiano/timelines-chart" target="_blank" rel="noopener noreferrer">vasturiano/timelines-chart</a>
+        </p>
+      </section>
 
       <h2>Course Works</h2>
 
@@ -205,50 +318,6 @@
 
       </div>
 
-      <div class="timeline-container">
-
-        <!-- LEFT COLUMN: EDUCATION -->
-        <div class="timeline-column">
-          <h2>Education</h2>
-
-          <!-- UNIVERSITY -->
-          <div class="timeline-item">
-            <h4>University of Waterloo</h4>
-            <span>September 2025 – 2029 (expected)</span>
-          </div>
-
-          <!-- HIGH SCHOOL -->
-          <div class="timeline-item">
-            <h4>Pinetree Secondary School</h4>
-            <span>
-              September 2021 – June 2025<br>
-              Top 2 percent in graduating class of ~380
-            </span>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: EXPERIENCE -->
-        <div class="timeline-column">
-          <h2>Experience</h2>
-
-          <div class="timeline-item">
-            <h4>Academic Tutor (School‑Hired)</h4>
-            <span>January 2022 – June 2025</span>
-          </div>
-
-          <div class="timeline-item">
-            <h4>STEM Club Leader</h4>
-            <span>September 2024 – June 2025</span>
-          </div>
-
-          <div class="timeline-item">
-            <h4>Science Peer Tutor</h4>
-            <span>January 2025 – June 2025</span>
-          </div>
-        </div>
-
-      </div>
-      <br>
       <h2 id="certificates">Certificates</h2>
 
       <div class="edu-grid">
@@ -320,6 +389,23 @@
           </ul>
         </div>
       </div>
+    </div>
+
+    <!-- AWARDS -->
+    <div class="box" id="awards">
+      <h1>Awards</h1>
+      <ul>
+        <li><strong>Recipient, Mayor's Community Fund</strong> — May 2025</li>
+        <li><strong>3rd Place, Port Moody Youth Orchestra Music Competition</strong> — December 2024</li>
+        <li><strong>1st Place, Truth and Reconciliation Art Prize</strong> — June 2024</li>
+        <li><strong>Curricular Excellence in Math & Calculus Honours</strong> — 2021–2025</li>
+      </ul>
+
+      <div class="award-photos" id="award-photos">
+        <img src="pictures/scholarship.jpg" alt="mayor">
+        <img src="pictures/pmyo.png" alt="concert">
+      </div>
+
     </div>
 
   </div>
@@ -434,14 +520,372 @@
     })();
 
     (function () {
+      const timeline = document.querySelector('.career-timeline');
+      if (!timeline) return;
+
+      const scroller = timeline.querySelector('.career-timeline-scroll');
+      const canvas = timeline.querySelector('.career-timeline-canvas');
+      const calendar = timeline.querySelector('.timeline-calendar');
+      const periods = Array.from(timeline.querySelectorAll('.timeline-period'));
+      const previousButton = timeline.querySelector('.timeline-scroll-button--previous');
+      const nextButton = timeline.querySelector('.timeline-scroll-button--next');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const monthWidth = 44;
+
+      function parseMonth(value) {
+        const parts = value.split('-').map(Number);
+        return new Date(Date.UTC(parts[0], parts[1] - 1, 1));
+      }
+
+      function addMonths(date, amount) {
+        return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + amount, 1));
+      }
+
+      const domainStart = parseMonth(canvas.dataset.domainStart);
+      const domainEnd = parseMonth(canvas.dataset.domainEnd);
+      const domainDuration = domainEnd.getTime() - domainStart.getTime();
+      const totalMonths = (domainEnd.getUTCFullYear() - domainStart.getUTCFullYear()) * 12
+        + domainEnd.getUTCMonth() - domainStart.getUTCMonth();
+
+      function drawTimeline() {
+        const canvasWidth = Math.max(scroller.clientWidth, totalMonths * monthWidth);
+        canvas.style.width = canvasWidth + 'px';
+        calendar.replaceChildren();
+
+        function xFor(date) {
+          return ((date.getTime() - domainStart.getTime()) / domainDuration) * canvasWidth;
+        }
+
+        let cursor = domainStart;
+        let monthIndex = 0;
+
+        while (cursor < domainEnd) {
+          const nextMonth = addMonths(cursor, 1);
+          const tick = document.createElement('div');
+          const isYear = cursor.getUTCMonth() === 0;
+          const isFirst = monthIndex === 0;
+
+          tick.className = 'timeline-month' + (isYear ? ' is-year' : '');
+          tick.style.left = xFor(cursor) + 'px';
+          tick.style.width = (xFor(nextMonth) - xFor(cursor)) + 'px';
+
+          const monthLabel = document.createElement('span');
+          monthLabel.className = 'timeline-month-label';
+          monthLabel.textContent = monthNames[cursor.getUTCMonth()];
+          tick.appendChild(monthLabel);
+
+          if (isYear || isFirst) {
+            const yearLabel = document.createElement('span');
+            yearLabel.className = 'timeline-year-label';
+            yearLabel.textContent = cursor.getUTCFullYear();
+            tick.appendChild(yearLabel);
+          }
+
+          calendar.appendChild(tick);
+          cursor = nextMonth;
+          monthIndex += 1;
+        }
+
+        const laneByPeriod = new Map();
+
+        function packLanes(items) {
+          const laneEnds = [];
+          const sortedItems = items.slice().sort(function (itemA, itemB) {
+            return parseMonth(itemA.dataset.start) - parseMonth(itemB.dataset.start);
+          });
+
+          sortedItems.forEach(function (period) {
+            const start = parseMonth(period.dataset.start);
+            const endExclusive = addMonths(parseMonth(period.dataset.end), 1);
+            let lane = laneEnds.findIndex(function (laneEnd) {
+              return start >= laneEnd;
+            });
+
+            if (lane === -1) {
+              lane = laneEnds.length;
+            }
+
+            laneEnds[lane] = endExclusive;
+            laneByPeriod.set(period, lane);
+          });
+
+          return laneEnds.length;
+        }
+
+        packLanes(periods.filter(function (period) {
+          return period.classList.contains('timeline-period--experience');
+        }));
+
+        const educationLaneCount = packLanes(periods.filter(function (period) {
+          return period.classList.contains('timeline-period--education');
+        }));
+        const canvasHeight = 306 + Math.max(0, educationLaneCount - 1) * 24;
+
+        canvas.style.height = canvasHeight + 'px';
+        scroller.style.height = (canvasHeight + 12) + 'px';
+
+        periods.forEach(function (period) {
+          const start = parseMonth(period.dataset.start);
+          const endExclusive = addMonths(parseMonth(period.dataset.end), 1);
+          const row = laneByPeriod.get(period) || 0;
+          const isEducation = period.classList.contains('timeline-period--education');
+          const top = isEducation ? 270 + row * 24 : 52 + row * 44;
+
+          period.style.setProperty('--period-left', xFor(start) + 'px');
+          period.style.setProperty('--period-width', Math.max(1, xFor(endExclusive) - xFor(start)) + 'px');
+          period.style.setProperty('--period-top', top + 'px');
+        });
+      }
+
+      const detailCard = document.createElement('aside');
+      detailCard.className = 'timeline-detail-card';
+      detailCard.id = 'timeline-detail-card';
+      detailCard.setAttribute('role', 'tooltip');
+      detailCard.setAttribute('aria-hidden', 'true');
+      detailCard.innerHTML = [
+        '<span class="timeline-detail-kind"></span>',
+        '<h3></h3>',
+        '<p class="timeline-detail-dates"></p>',
+        '<p class="timeline-detail-copy"></p>'
+      ].join('');
+      document.body.appendChild(detailCard);
+
+      const detailKind = detailCard.querySelector('.timeline-detail-kind');
+      const detailTitle = detailCard.querySelector('h3');
+      const detailDates = detailCard.querySelector('.timeline-detail-dates');
+      const detailCopy = detailCard.querySelector('.timeline-detail-copy');
+      let activePeriod = null;
+      let lockedPeriod = null;
+      let lastPointer = null;
+
+      periods.forEach(function (period) {
+        period.setAttribute('aria-controls', detailCard.id);
+      });
+
+      function positionDetail(period, pointer) {
+        const cardRect = detailCard.getBoundingClientRect();
+        const periodRect = period.getBoundingClientRect();
+        const scrollerRect = scroller.getBoundingClientRect();
+        const gap = 14;
+        const edge = 12;
+        const visibleLeft = Math.max(periodRect.left, scrollerRect.left);
+        const visibleRight = Math.min(periodRect.right, scrollerRect.right);
+        const fallbackX = visibleLeft + Math.max(0, visibleRight - visibleLeft) / 2;
+        const anchorX = pointer ? pointer.x : fallbackX;
+        const anchorY = pointer ? pointer.y : periodRect.top + periodRect.height / 2;
+        let left = anchorX + gap;
+
+        if (left + cardRect.width > window.innerWidth - edge) {
+          left = anchorX - cardRect.width - gap;
+          detailCard.dataset.placement = 'left';
+        } else {
+          detailCard.dataset.placement = 'right';
+        }
+
+        left = Math.max(edge, Math.min(left, window.innerWidth - cardRect.width - edge));
+        const top = Math.max(
+          edge,
+          Math.min(anchorY - cardRect.height / 2, window.innerHeight - cardRect.height - edge)
+        );
+
+        detailCard.style.left = left + 'px';
+        detailCard.style.top = top + 'px';
+      }
+
+      function periodIsVisible(period) {
+        const periodRect = period.getBoundingClientRect();
+        const scrollerRect = scroller.getBoundingClientRect();
+        return periodRect.right > scrollerRect.left
+          && periodRect.left < scrollerRect.right
+          && periodRect.bottom > scrollerRect.top
+          && periodRect.top < scrollerRect.bottom
+          && periodRect.right > 0
+          && periodRect.left < window.innerWidth
+          && periodRect.bottom > 0
+          && periodRect.top < window.innerHeight;
+      }
+
+      function syncActiveDetail(pointer) {
+        if (!activePeriod) return;
+        if (!periodIsVisible(activePeriod)) {
+          lockedPeriod = null;
+          hideDetail(true);
+          return;
+        }
+        positionDetail(activePeriod, pointer || null);
+      }
+
+      function showDetail(period, pointer) {
+        if (lockedPeriod && lockedPeriod !== period) {
+          lockedPeriod.classList.remove('is-active');
+          lockedPeriod.setAttribute('aria-expanded', 'false');
+          lockedPeriod = null;
+        }
+
+        if (activePeriod && activePeriod !== period) {
+          activePeriod.classList.remove('is-active');
+          activePeriod.setAttribute('aria-expanded', 'false');
+        }
+
+        activePeriod = period;
+        lastPointer = pointer || null;
+        detailKind.textContent = period.dataset.kind;
+        detailTitle.textContent = period.dataset.title;
+        detailDates.textContent = period.dataset.dates;
+        detailCopy.textContent = period.dataset.detail || '';
+        detailCopy.hidden = !period.dataset.detail;
+        period.classList.add('is-active');
+        period.setAttribute('aria-expanded', 'true');
+        detailCard.classList.add('is-visible');
+        detailCard.setAttribute('aria-hidden', 'false');
+        positionDetail(period, pointer);
+      }
+
+      function hideDetail(force) {
+        if (!activePeriod || (!force && lockedPeriod === activePeriod)) return;
+        activePeriod.classList.remove('is-active');
+        activePeriod.setAttribute('aria-expanded', 'false');
+        activePeriod = null;
+        lastPointer = null;
+        detailCard.classList.remove('is-visible');
+        detailCard.setAttribute('aria-hidden', 'true');
+      }
+
+      periods.forEach(function (period) {
+        period.addEventListener('pointerenter', function (event) {
+          if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+            showDetail(period, { x: event.clientX, y: event.clientY });
+          }
+        });
+
+        period.addEventListener('pointermove', function (event) {
+          if (activePeriod === period && lockedPeriod !== period && event.pointerType === 'mouse') {
+            lastPointer = { x: event.clientX, y: event.clientY };
+            positionDetail(period, lastPointer);
+          }
+        });
+
+        period.addEventListener('pointerleave', function () {
+          if (document.activeElement !== period) hideDetail(false);
+        });
+
+        period.addEventListener('focus', function () {
+          showDetail(period);
+        });
+
+        period.addEventListener('blur', function () {
+          if (lockedPeriod !== period) hideDetail(false);
+        });
+
+        period.addEventListener('click', function () {
+          if (lockedPeriod === period) {
+            lockedPeriod = null;
+            hideDetail(true);
+          } else {
+            lockedPeriod = period;
+            showDetail(period);
+          }
+        });
+      });
+
+      document.addEventListener('pointerdown', function (event) {
+        if (lockedPeriod && !lockedPeriod.contains(event.target)) {
+          lockedPeriod = null;
+          hideDetail(true);
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && activePeriod) {
+          lockedPeriod = null;
+          hideDetail(true);
+        }
+      });
+
+      function updateScrollButtons() {
+        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+        previousButton.disabled = scroller.scrollLeft <= 1;
+        nextButton.disabled = scroller.scrollLeft >= maxScroll - 1;
+      }
+
+      function scrollTimeline(direction) {
+        scroller.scrollBy({
+          left: direction * Math.max(280, scroller.clientWidth * 0.72),
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      }
+
+      previousButton.addEventListener('click', function () {
+        scrollTimeline(-1);
+      });
+
+      nextButton.addEventListener('click', function () {
+        scrollTimeline(1);
+      });
+
+      scroller.addEventListener('keydown', function (event) {
+        if (event.target !== scroller) return;
+        if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+          event.preventDefault();
+          scrollTimeline(-1);
+        } else if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+          event.preventDefault();
+          scrollTimeline(1);
+        }
+      });
+
+      scroller.addEventListener('scroll', function () {
+        updateScrollButtons();
+        syncActiveDetail(lockedPeriod ? null : lastPointer);
+      }, { passive: true });
+
+      window.addEventListener('scroll', function () {
+        syncActiveDetail(null);
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        drawTimeline();
+        updateScrollButtons();
+        syncActiveDetail(null);
+      });
+
+      drawTimeline();
+      updateScrollButtons();
+    })();
+
+    (function () {
       const toggle = document.querySelector('.resume-toggle');
       const panel = document.querySelector('.resume-panel');
-      if (!toggle || !panel) return;
+      const resumeSection = document.getElementById('resume');
+      const resumeLink = document.querySelector('.sidebar a[href="#resume"]');
+      if (!toggle || !panel || !resumeSection) return;
+
+      function setResumeOpen(isOpen) {
+        panel.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+      }
+
+      function openResumeFromHash() {
+        if (window.location.hash !== '#resume') return;
+        setResumeOpen(true);
+        window.requestAnimationFrame(function () {
+          resumeSection.scrollIntoView({ block: 'start' });
+        });
+      }
 
       toggle.addEventListener('click', function () {
-        const isOpen = panel.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', isOpen);
+        setResumeOpen(toggle.getAttribute('aria-expanded') !== 'true');
       });
+
+      if (resumeLink) {
+        resumeLink.addEventListener('click', function () {
+          setResumeOpen(true);
+        });
+      }
+
+      window.addEventListener('hashchange', openResumeFromHash);
+      openResumeFromHash();
     })();
     (function () {
       const toggle = document.querySelector('.theme-toggle');
