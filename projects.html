@@ -137,7 +137,7 @@
               <img src="pictures/xwing 4.png" alt="X-Wing exploded drawing and bill of materials">
             </button>
           </div>
-          <p class="project-gallery-hint">Select an image to enlarge.</p>
+          <p class="project-gallery-hint">Click on an image to expand.</p>
         </div>
 
         <div class="project-card">
@@ -227,7 +227,7 @@
       <button class="lightbox-prev" type="button" aria-label="Previous image">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
-      <img class="lightbox-img" id="project-lightbox-img" src="" alt="">
+      <img class="lightbox-img" id="project-lightbox-img" alt="">
       <button class="lightbox-next" type="button" aria-label="Next image">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
@@ -319,12 +319,13 @@
 
       function closeLightbox() {
         lightbox.classList.remove('active');
-        lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
 
         if (previousFocus && typeof previousFocus.focus === 'function') {
           previousFocus.focus();
         }
+
+        lightbox.setAttribute('aria-hidden', 'true');
       }
 
       function showPrevious() {
