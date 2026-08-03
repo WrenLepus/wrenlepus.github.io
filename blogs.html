@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Warren Liu - Blogs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="topnav">
+    <div class="nav-brand">Warren Liu</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="music.html">Music</a>
+      <a href="blogs.html" class="active">Blogs</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Academic Affiliation</span>
+      <a href="https://uwaterloo.ca/biomedical-engineering/" target="_blank">BME at UWaterloo</a>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">Sections</span>
+      <a href="#posts">Posts</a>
+      <a href="#calendar">Calendar</a>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-section">
+        <span class="sidebar-label">Socials</span>
+        <div class="contact-block">
+          <a href="https://github.com/WrenLepus" target="_blank" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://ca.linkedin.com/in/warren-liu-4372143a2" target="_blank" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:w65liu@uwaterloo.ca" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="https://www.instagram.com/wrenlepus/" target="_blank" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@LepusCompositions" target="_blank" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <h1>Blogs</h1>
+
+    <div class="blog-layout">
+      <!-- LEFT: BLOG POSTS -->
+      <section class="blog-main" id="posts" aria-labelledby="posts-heading">
+        <div class="blog-list-header">
+          <h2 id="posts-heading">Posts</h2>
+          <p class="blog-list-status" aria-live="polite">Showing all posts</p>
+        </div>
+        <div class="blog-list"></div>
+        <p class="blog-empty" hidden>No posts for the selected date.</p>
+      </section>
+
+      <!-- RIGHT: CALENDAR -->
+      <aside class="blog-calendar-wrap" id="calendar" aria-labelledby="calendar-heading">
+        <div class="blog-calendar-header">
+          <button class="blog-calendar-nav" type="button" aria-label="Previous month" data-dir="-1">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <h2 id="calendar-heading" class="blog-calendar-month"></h2>
+          <button class="blog-calendar-nav" type="button" aria-label="Next month" data-dir="1">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="blog-calendar-grid" role="grid" aria-label="Blog post calendar">
+          <div class="blog-calendar-weekdays" role="row">
+            <span role="columnheader">S</span>
+            <span role="columnheader">M</span>
+            <span role="columnheader">T</span>
+            <span role="columnheader">W</span>
+            <span role="columnheader">T</span>
+            <span role="columnheader">F</span>
+            <span role="columnheader">S</span>
+          </div>
+          <div class="blog-calendar-days" role="rowgroup"></div>
+        </div>
+        <div class="blog-calendar-controls">
+          <button class="blog-calendar-control" type="button" aria-label="Previous post" data-dir="-1" disabled>
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="blog-calendar-control" type="button" aria-label="Next post" data-dir="1" disabled>
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="blog-calendar-reset" type="button" hidden>Show all posts</button>
+      </aside>
+    </div>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // BLOG MODULE — paste new posts here
+    // ============================================================
+    const blogPosts = [
+      {
+        id: '2026-08-02-welcome',
+        title: 'Welcome to My Blog',
+        date: '2026-08-02',
+        excerpt: 'A quick introduction to this space.',
+        body: '<p>This is where I will share updates about projects, thoughts on biomedical engineering, music, and anything else I find interesting. Thanks for stopping by!</p>'
+      },
+    ];
+
+    (function () {
+      const listContainer = document.querySelector('.blog-list');
+      const emptyMessage = document.querySelector('.blog-empty');
+      const statusLabel = document.querySelector('.blog-list-status');
+      const calendarMonth = document.querySelector('.blog-calendar-month');
+      const calendarDays = document.querySelector('.blog-calendar-days');
+      const resetButton = document.querySelector('.blog-calendar-reset');
+      const navButtons = document.querySelectorAll('.blog-calendar-nav');
+      const postNavButtons = document.querySelectorAll('.blog-calendar-control');
+
+      let currentMonth = new Date();
+      currentMonth.setDate(1);
+      currentMonth.setHours(0, 0, 0, 0);
+      let selectedDate = null;
+
+      const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+
+      function pad(n) {
+        return String(n).padStart(2, '0');
+      }
+
+      function formatDateKey(year, month, day) {
+        return year + '-' + pad(month + 1) + '-' + pad(day);
+      }
+
+      function parseDateKey(key) {
+        const parts = key.split('-').map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+      }
+
+      function formatDisplayDate(key) {
+        const d = parseDateKey(key);
+        return monthNames[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+      }
+
+      function getPostDates() {
+        const set = new Set();
+        blogPosts.forEach(function (post) {
+          set.add(post.date);
+        });
+        return set;
+      }
+
+      function sortPosts(posts) {
+        return posts.slice().sort(function (a, b) {
+          if (a.date !== b.date) return b.date.localeCompare(a.date);
+          return b.title.localeCompare(a.title);
+        });
+      }
+
+      function renderPosts() {
+        listContainer.innerHTML = '';
+
+        let posts = sortPosts(blogPosts);
+        if (selectedDate) {
+          posts = posts.filter(function (post) {
+            return post.date === selectedDate;
+          });
+        }
+
+        if (posts.length === 0) {
+          emptyMessage.hidden = false;
+          statusLabel.textContent = 'No posts for ' + formatDisplayDate(selectedDate);
+        } else {
+          emptyMessage.hidden = true;
+          statusLabel.textContent = selectedDate
+            ? 'Showing 1 post for ' + formatDisplayDate(selectedDate)
+            : 'Showing all ' + posts.length + ' post' + (posts.length === 1 ? '' : 's');
+        }
+
+        posts.forEach(function (post) {
+          const article = document.createElement('article');
+          article.className = 'blog-post';
+          article.setAttribute('data-date', post.date);
+          article.setAttribute('aria-labelledby', 'blog-title-' + post.id);
+
+          const title = document.createElement('h3');
+          title.id = 'blog-title-' + post.id;
+          title.textContent = post.title;
+
+          const meta = document.createElement('p');
+          meta.className = 'blog-post-date';
+          meta.textContent = formatDisplayDate(post.date);
+
+          const excerpt = document.createElement('p');
+          excerpt.className = 'blog-post-excerpt';
+          excerpt.textContent = post.excerpt;
+
+          const body = document.createElement('div');
+          body.className = 'blog-post-body';
+          body.innerHTML = post.body;
+
+          article.appendChild(title);
+          article.appendChild(meta);
+          article.appendChild(excerpt);
+          article.appendChild(body);
+          listContainer.appendChild(article);
+        });
+
+        resetButton.hidden = !selectedDate;
+        updatePostNavigation();
+      }
+
+      function renderCalendar() {
+        const year = currentMonth.getFullYear();
+        const month = currentMonth.getMonth();
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const postDates = getPostDates();
+
+        calendarMonth.textContent = monthNames[month] + ' ' + year;
+        calendarDays.innerHTML = '';
+
+        const totalCells = firstDayOfMonth + daysInMonth;
+        const rows = Math.ceil(totalCells / 7) * 7;
+
+        for (let i = 0; i < rows; i++) {
+          const dayNum = i - firstDayOfMonth + 1;
+          const cell = document.createElement('div');
+          cell.className = 'blog-calendar-day';
+          cell.setAttribute('role', 'gridcell');
+
+          if (dayNum < 1 || dayNum > daysInMonth) {
+            cell.classList.add('is-empty');
+            cell.setAttribute('aria-disabled', 'true');
+          } else {
+            const dateKey = formatDateKey(year, month, dayNum);
+            const hasPost = postDates.has(dateKey);
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = dayNum;
+            button.setAttribute('aria-label', dateKey + (hasPost ? ' — ' + countPostsOnDate(dateKey) + ' post(s)' : ''));
+            button.disabled = !hasPost;
+
+            if (hasPost) {
+              cell.classList.add('has-post');
+            }
+
+            if (selectedDate === dateKey) {
+              cell.classList.add('is-selected');
+              button.setAttribute('aria-pressed', 'true');
+            } else {
+              button.setAttribute('aria-pressed', 'false');
+            }
+
+            if (hasPost) {
+              button.addEventListener('click', function () {
+                if (selectedDate === dateKey) {
+                  selectedDate = null;
+                } else {
+                  selectedDate = dateKey;
+                }
+                renderPosts();
+                renderCalendar();
+              });
+            }
+
+            cell.appendChild(button);
+          }
+
+          calendarDays.appendChild(cell);
+        }
+      }
+
+      function getSortedPostDates() {
+        return Array.from(getPostDates()).sort();
+      }
+
+      function updatePostNavigation() {
+        const sortedDates = getSortedPostDates();
+        const index = sortedDates.indexOf(selectedDate);
+        postNavButtons.forEach(function (btn) {
+          const dir = Number(btn.dataset.dir);
+          let disabled = false;
+          if (!selectedDate || index === -1) {
+            disabled = true;
+          } else if (dir === -1) {
+            disabled = index === 0;
+          } else if (dir === 1) {
+            disabled = index === sortedDates.length - 1;
+          }
+          btn.disabled = disabled;
+        });
+      }
+
+      function countPostsOnDate(dateKey) {
+        return blogPosts.filter(function (post) {
+          return post.date === dateKey;
+        }).length;
+      }
+
+      navButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const dir = Number(btn.dataset.dir);
+          currentMonth.setMonth(currentMonth.getMonth() + dir);
+          renderCalendar();
+        });
+      });
+
+      postNavButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.disabled) return;
+          const dir = Number(btn.dataset.dir);
+          const sortedDates = getSortedPostDates();
+          const index = sortedDates.indexOf(selectedDate);
+          const nextIndex = index + dir;
+          if (nextIndex < 0 || nextIndex >= sortedDates.length) return;
+          selectedDate = sortedDates[nextIndex];
+          currentMonth = parseDateKey(selectedDate);
+          currentMonth.setDate(1);
+          currentMonth.setHours(0, 0, 0, 0);
+          renderPosts();
+          renderCalendar();
+        });
+      });
+
+      resetButton.addEventListener('click', function () {
+        selectedDate = null;
+        renderPosts();
+        renderCalendar();
+      });
+
+      renderPosts();
+      renderCalendar();
+    })();
+
+    (function () {
+      const toggle = document.querySelector('.theme-toggle');
+      const icon = toggle ? toggle.querySelector('i') : null;
+      const html = document.documentElement;
+      const stored = localStorage.getItem('theme');
+
+      if (stored) {
+        html.setAttribute('data-theme', stored);
+      }
+
+      function updateIcon() {
+        if (!icon) return;
+        if (html.getAttribute('data-theme') === 'dark') {
+          icon.className = 'fa-solid fa-sun';
+          toggle.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+          icon.className = 'fa-solid fa-moon';
+          toggle.setAttribute('aria-label', 'Switch to dark mode');
+        }
+      }
+
+      updateIcon();
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          const next = isDark ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateIcon();
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

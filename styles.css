@@ -1250,6 +1250,26 @@ img {
   height: auto;
 }
 
+.intro-media .intro-media-youtube {
+  max-width: 500px;
+}
+
+.intro-media .intro-media-score {
+  max-width: 350px;
+}
+
+@media (max-width: 640px) {
+  .intro-media {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .intro-media .intro-media-youtube,
+  .intro-media .intro-media-score {
+    max-width: 100%;
+  }
+}
+
 .composition {
   margin-bottom: 40px;
 }
@@ -1452,6 +1472,330 @@ body.intro-locked {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
+  }
+}
+
+/* --- BLOGS PAGE --- */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+}
+
+.blog-main {
+  min-width: 0;
+}
+
+.blog-list-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.blog-list-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.blog-list-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.blog-post {
+  background: var(--surface);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.blog-post h3 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  color: var(--text);
+}
+
+.blog-post-date {
+  margin: 0 0 14px 0;
+  color: var(--accent-hover);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.blog-post-excerpt {
+  margin: 0 0 12px 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.blog-post-body {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.blog-post-body p {
+  margin: 0 0 14px 0;
+}
+
+.blog-post-body p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+}
+
+.blog-empty {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+/* --- BLOG CALENDAR --- */
+.blog-calendar-wrap {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+  background: var(--surface);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  height: fit-content;
+  min-width: 0;
+  max-width: 280px;
+  width: 100%;
+}
+
+.blog-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.blog-calendar-month {
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+  flex: 1;
+}
+
+.blog-calendar-nav {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.blog-calendar-nav:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.blog-calendar-nav:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.blog-calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.blog-calendar-weekdays,
+.blog-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.blog-calendar-weekdays span {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+
+.blog-calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-calendar-day.is-empty {
+  pointer-events: none;
+}
+
+.blog-calendar-day button {
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: default;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.blog-calendar-day.has-post button {
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.blog-calendar-day.has-post button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.blog-calendar-day.is-selected button {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
+.blog-calendar-day button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
+.blog-calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.blog-calendar-control {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.blog-calendar-control:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.blog-calendar-control:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.blog-calendar-control:disabled {
+  opacity: 0.36;
+  cursor: default;
+  transform: none;
+}
+
+.blog-calendar-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.blog-calendar-reset:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --- DARK MODE OVERRIDES FOR BLOGS --- */
+[data-theme="dark"] .blog-calendar-day button {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .blog-calendar-day.has-post button {
+  color: #141414;
+}
+
+[data-theme="dark"] .blog-calendar-day.is-selected button {
+  outline-color: #fff;
+}
+
+[data-theme="dark"] .blog-calendar-nav:hover,
+[data-theme="dark"] .blog-calendar-control:hover,
+[data-theme="dark"] .blog-calendar-reset:hover {
+  background: var(--accent-active);
+}
+
+/* --- BLOGS RESPONSIVE --- */
+@media (max-width: 900px) {
+  .blog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-calendar-wrap {
+    position: static;
+    max-width: 320px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-calendar-day button,
+  .blog-calendar-nav,
+  .blog-calendar-control,
+  .blog-calendar-reset {
+    transition: none;
+  }
+
+  .blog-calendar-day.has-post button:hover,
+  .blog-calendar-control:hover {
+    transform: none;
   }
 }
 
