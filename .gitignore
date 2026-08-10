@@ -5,3 +5,5 @@ videos/
 *.avi
 *.mkv
 *.webm
+
+.agent

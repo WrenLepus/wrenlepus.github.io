@@ -19,7 +19,6 @@
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="music.html">Music</a>
-      <a href="blogs.html" class="active">Blogs</a>
       <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
         <i class="fa-solid fa-moon"></i>
       </button>
@@ -116,21 +115,84 @@
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.0.0/marked.min.js"
+          integrity="sha384-K6kVcQ04tqVGO7RJ+FjMmvM3Xu/hNQQWEqT4ldRAtw/tYLeDoCGKNeKn5mAdq1nK"
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"></script>
+
   <script>
     // ============================================================
-    // BLOG MODULE — paste new posts here
+    // BLOG MODULE — posts are loaded from the blogs/ folder
     // ============================================================
-    const blogPosts = [
-      {
-        id: '2026-08-02-welcome',
-        title: 'Welcome to My Blog',
-        date: '2026-08-02',
-        excerpt: 'A quick introduction to this space.',
-        body: '<p>This is where I will share updates about projects, thoughts on biomedical engineering, music, and anything else I find interesting. Thanks for stopping by!</p>'
-      },
-    ];
 
-    (function () {
+    (async function () {
+      let blogPosts = [];
+      let loadError = null;
+
+      function parseMarkdownPost(markdown, filename) {
+        const normalized = markdown.replace(/\r\n?/g, '\n');
+        const match = normalized.match(/^---\n([\s\S]*?)\n---\n\s*([\s\S]*)$/);
+        if (!match) {
+          throw new Error('Missing frontmatter in ' + filename);
+        }
+
+        const front = match[1].trim();
+        const bodyMd = match[2].trim();
+        const meta = {};
+
+        front.split('\n').forEach(function (line) {
+          const sep = line.indexOf(':');
+          if (sep === -1) return;
+          const key = line.slice(0, sep).trim();
+          let value = line.slice(sep + 1).trim();
+
+          if ((value.startsWith('"') && value.endsWith('"')) ||
+              (value.startsWith("'") && value.endsWith("'"))) {
+            value = value.slice(1, -1);
+          } else if (value === 'true' || value === 'false') {
+            value = value === 'true';
+          }
+          meta[key] = value;
+        });
+
+        if (!meta.id) {
+          meta.id = filename.split('/').pop().replace(/\.md$/i, '');
+        }
+        if (!meta.date) {
+          const dateMatch = (meta.id || filename).match(/(\d{4}-\d{2}-\d{2})/);
+          if (dateMatch) meta.date = dateMatch[1];
+        }
+        if (!meta.title) meta.title = meta.id;
+        if (!meta.excerpt) meta.excerpt = '';
+        if (typeof meta.pinned !== 'boolean') {
+          meta.pinned = meta.pinned === 'true';
+        }
+
+        meta.body = marked.parse(bodyMd || '');
+        return meta;
+      }
+
+      async function loadBlogPosts() {
+        const manifestResponse = await fetch('blogs/index.txt');
+        if (!manifestResponse.ok) {
+          throw new Error('Could not load blog index.');
+        }
+        const text = await manifestResponse.text();
+        const files = text.split('\n')
+          .map(function (line) { return line.trim(); })
+          .filter(function (line) { return line && !line.startsWith('#'); });
+
+        const posts = await Promise.all(files.map(async function (file) {
+          const response = await fetch(file);
+          if (!response.ok) {
+            throw new Error('Failed to load ' + file);
+          }
+          const markdown = await response.text();
+          return parseMarkdownPost(markdown, file);
+        }));
+        return posts;
+      }
+
       const listContainer = document.querySelector('.blog-list');
       const emptyMessage = document.querySelector('.blog-empty');
       const statusLabel = document.querySelector('.blog-list-status');
@@ -186,16 +248,37 @@
       function renderPosts() {
         listContainer.innerHTML = '';
 
+        if (loadError) {
+          emptyMessage.textContent = 'Error: ' + loadError;
+          emptyMessage.hidden = false;
+          statusLabel.textContent = 'Unable to load posts';
+          resetButton.hidden = true;
+          return;
+        }
+
         let posts = sortPosts(blogPosts);
         if (selectedDate) {
           posts = posts.filter(function (post) {
             return post.date === selectedDate;
           });
+        } else {
+          const pinned = posts.filter(function (post) {
+            return post.pinned === true;
+          });
+          const others = posts.filter(function (post) {
+            return !post.pinned;
+          });
+          posts = pinned.concat(others);
         }
 
         if (posts.length === 0) {
+          emptyMessage.textContent = selectedDate
+            ? 'No posts for ' + formatDisplayDate(selectedDate)
+            : 'No posts available.';
           emptyMessage.hidden = false;
-          statusLabel.textContent = 'No posts for ' + formatDisplayDate(selectedDate);
+          statusLabel.textContent = selectedDate
+            ? 'No posts for ' + formatDisplayDate(selectedDate)
+            : 'No posts available';
         } else {
           emptyMessage.hidden = true;
           statusLabel.textContent = selectedDate
@@ -205,7 +288,7 @@
 
         posts.forEach(function (post) {
           const article = document.createElement('article');
-          article.className = 'blog-post';
+          article.className = 'blog-post' + (post.pinned && !selectedDate ? ' is-pinned' : '');
           article.setAttribute('data-date', post.date);
           article.setAttribute('aria-labelledby', 'blog-title-' + post.id);
 
@@ -355,6 +438,17 @@
         renderPosts();
         renderCalendar();
       });
+
+      try {
+        statusLabel.textContent = 'Loading posts...';
+        statusLabel.classList.add('is-loading');
+        blogPosts = await loadBlogPosts();
+        loadError = null;
+      } catch (err) {
+        loadError = err.message || 'Failed to load posts.';
+      } finally {
+        statusLabel.classList.remove('is-loading');
+      }
 
       renderPosts();
       renderCalendar();

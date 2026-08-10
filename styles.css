@@ -1568,6 +1568,29 @@ body.intro-locked {
   margin-top: 8px;
 }
 
+.blog-list-status.is-loading {
+  color: var(--accent);
+}
+
+.blog-post.is-pinned {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md), 0 0 0 1px var(--accent);
+}
+
+.blog-post.is-pinned::before {
+  content: "Pinned";
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* --- BLOG CALENDAR --- */
 .blog-calendar-wrap {
   position: sticky;
