@@ -92,10 +92,8 @@
       <h2>Hi! 👋</h2>
       <p>
         I'm Warren, a first-year Biomedical Engineering student at the University of Waterloo currently searching for a 4-month co-op position.
-        I am interested in medical devices, UX research, and improving accessibility of medical technologies for patients.
-        <br><br>
-        I am also passionate about linkage-based mechanical designs, sketching automatons replicating movements of birds and appendages of insects.
-        <br><br>
+        I am interested in medical devices, UI/UX designs, and improving accessibility of medical technologies for patients.
+        
         Below are some of the team projects I've taken part in, along with some personal passion projects:
       </p>
       <br>
@@ -551,11 +549,15 @@
       const canvas = timeline.querySelector('.career-timeline-canvas');
       const calendar = timeline.querySelector('.timeline-calendar');
       const periods = Array.from(timeline.querySelectorAll('.timeline-period'));
+      const experiencePeriods = periods.filter(function (period) {
+        return period.classList.contains('timeline-period--experience');
+      });
       const previousButton = timeline.querySelector('.timeline-scroll-button--previous');
       const nextButton = timeline.querySelector('.timeline-scroll-button--next');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       const monthWidth = 44;
+      let shouldSnapTimelineToLatestExperience = true;
 
       function parseMonth(value) {
         const parts = value.split('-').map(Number);
@@ -572,13 +574,38 @@
       const totalMonths = (domainEnd.getUTCFullYear() - domainStart.getUTCFullYear()) * 12
         + domainEnd.getUTCMonth() - domainStart.getUTCMonth();
 
+      function positionForDate(date, width) {
+        return ((date.getTime() - domainStart.getTime()) / domainDuration) * width;
+      }
+
+      function endExclusiveForPeriod(period) {
+        return addMonths(parseMonth(period.dataset.end), 1);
+      }
+
+      function getLatestExperiencePeriod() {
+        return experiencePeriods.reduce(function (latestPeriod, period) {
+          if (!latestPeriod) return period;
+
+          const latestEnd = endExclusiveForPeriod(latestPeriod).getTime();
+          const periodEnd = endExclusiveForPeriod(period).getTime();
+
+          if (periodEnd !== latestEnd) {
+            return periodEnd > latestEnd ? period : latestPeriod;
+          }
+
+          return parseMonth(period.dataset.start) > parseMonth(latestPeriod.dataset.start)
+            ? period
+            : latestPeriod;
+        }, null);
+      }
+
       function drawTimeline() {
         const canvasWidth = Math.max(scroller.clientWidth, totalMonths * monthWidth);
         canvas.style.width = canvasWidth + 'px';
         calendar.replaceChildren();
 
         function xFor(date) {
-          return ((date.getTime() - domainStart.getTime()) / domainDuration) * canvasWidth;
+          return positionForDate(date, canvasWidth);
         }
 
         let cursor = domainStart;
@@ -651,7 +678,7 @@
 
         periods.forEach(function (period) {
           const start = parseMonth(period.dataset.start);
-          const endExclusive = addMonths(parseMonth(period.dataset.end), 1);
+          const endExclusive = endExclusiveForPeriod(period);
           const row = laneByPeriod.get(period) || 0;
           const isEducation = period.classList.contains('timeline-period--education');
           const top = isEducation ? 270 + row * 24 : 52 + row * 44;
@@ -660,6 +687,17 @@
           period.style.setProperty('--period-width', Math.max(1, xFor(endExclusive) - xFor(start)) + 'px');
           period.style.setProperty('--period-top', top + 'px');
         });
+      }
+
+      function snapTimelineToLatestExperience() {
+        const latestExperience = getLatestExperiencePeriod();
+        if (!latestExperience) return;
+
+        const latestRightEdge = positionForDate(endExclusiveForPeriod(latestExperience), canvas.offsetWidth);
+        const maxScroll = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+        const targetScrollLeft = Math.max(0, Math.min(latestRightEdge - scroller.clientWidth, maxScroll));
+
+        scroller.scrollLeft = targetScrollLeft;
       }
 
       const detailCard = document.createElement('aside');
@@ -841,15 +879,18 @@
       }
 
       previousButton.addEventListener('click', function () {
+        shouldSnapTimelineToLatestExperience = false;
         scrollTimeline(-1);
       });
 
       nextButton.addEventListener('click', function () {
+        shouldSnapTimelineToLatestExperience = false;
         scrollTimeline(1);
       });
 
       scroller.addEventListener('keydown', function (event) {
         if (event.target !== scroller) return;
+        shouldSnapTimelineToLatestExperience = false;
         if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
           event.preventDefault();
           scrollTimeline(-1);
@@ -858,6 +899,18 @@
           scrollTimeline(1);
         }
       });
+
+      scroller.addEventListener('pointerdown', function () {
+        shouldSnapTimelineToLatestExperience = false;
+      });
+
+      scroller.addEventListener('wheel', function () {
+        shouldSnapTimelineToLatestExperience = false;
+      }, { passive: true });
+
+      scroller.addEventListener('touchstart', function () {
+        shouldSnapTimelineToLatestExperience = false;
+      }, { passive: true });
 
       scroller.addEventListener('scroll', function () {
         updateScrollButtons();
@@ -870,11 +923,15 @@
 
       window.addEventListener('resize', function () {
         drawTimeline();
+        if (shouldSnapTimelineToLatestExperience) {
+          snapTimelineToLatestExperience();
+        }
         updateScrollButtons();
         syncActiveDetail(null);
       });
 
       drawTimeline();
+      snapTimelineToLatestExperience();
       updateScrollButtons();
     })();
 

@@ -1070,13 +1070,33 @@ a:hover {
 }
 
 .gallery-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title button"
+    "text button";
+  align-items: start;
+  column-gap: 18px;
+  row-gap: 10px;
   margin-bottom: 8px;
 }
 
 .gallery-header h1 {
+  grid-area: title;
+  margin: 0;
+}
+
+.gallery-header .gradient-btn {
+  grid-area: button;
+  align-self: start;
+}
+
+.gallery-header br {
+  display: none;
+}
+
+.gallery-header p {
+  grid-area: text;
   margin: 0;
 }
 
