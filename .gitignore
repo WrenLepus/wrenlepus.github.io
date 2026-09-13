@@ -1,0 +1,9 @@
+# Video files
+videos/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+.agent
