@@ -97,19 +97,90 @@
         Below are some of the team projects I've taken part in, along with some personal passion projects:
       </p>
       <br>
-      <div class="section-buttons">
-        <a class="gradient-btn" href="projects.html">View Projects →</a>
+
+      <!-- FEATURED PROJECTS GALLERY -->
+      <!--
+        To change which projects appear here, edit the FEATURED_PROJECTS array
+        in the script at the bottom of this file. Each item needs an id that
+        matches the data-project attribute on its gallery card below.
+      -->
+      <section class="featured-projects" id="featured-projects">
+        <h2>Featured Projects</h2>
+        <p class="featured-projects-intro">A few recent highlights from my academic and personal work.</p>
+
+        <div class="featured-gallery-wrap">
+          <div class="featured-gallery-scroll" role="region" aria-label="Featured projects gallery" tabindex="0">
+            <div class="featured-gallery-track">
+              <article class="featured-gallery-item" data-project="boardgame">
+                <button class="featured-gallery-card" type="button" aria-label="Open Boardgame Accessibility project details">
+                  <img src="pictures/boardgame.jpg" alt="Boardgame Accessibility project preview">
+                  <div class="featured-gallery-overlay">
+                    <span class="featured-gallery-category">Academic Project</span>
+                    <h3>Boardgame Accessibility</h3>
+                  </div>
+                </button>
+              </article>
+
+              <article class="featured-gallery-item" data-project="puzzle">
+                <button class="featured-gallery-card" type="button" aria-label="Open 3D-printed Puzzle project details">
+                  <img src="pictures/rock.png" alt="3D-printed Puzzle project preview">
+                  <div class="featured-gallery-overlay">
+                    <span class="featured-gallery-category">Academic Project</span>
+                    <h3>3D-printed Puzzle</h3>
+                  </div>
+                </button>
+              </article>
+
+              <article class="featured-gallery-item" data-project="thesia">
+                <button class="featured-gallery-card" type="button" aria-label="Open Thesia project details">
+                  <img src="pictures/thesia.png" alt="Thesia project preview">
+                  <div class="featured-gallery-overlay">
+                    <span class="featured-gallery-category">Personal Project</span>
+                    <h3>Thesia</h3>
+                  </div>
+                </button>
+              </article>
+
+              <article class="featured-gallery-item" data-project="xwing">
+                <button class="featured-gallery-card" type="button" aria-label="Open X-Wing Model project details">
+                  <img src="pictures/xwing 1.png" alt="X-Wing Model project preview">
+                  <div class="featured-gallery-overlay">
+                    <span class="featured-gallery-category">Academic Project</span>
+                    <h3>X-Wing Model</h3>
+                  </div>
+                </button>
+              </article>
+
+              <article class="featured-gallery-item" data-project="sheetmusic">
+                <button class="featured-gallery-card" type="button" aria-label="Open Building Online Sheet Music Platform project details">
+                  <img src="pictures/lepusmusic.png" alt="Building Online Sheet Music Platform project preview">
+                  <div class="featured-gallery-overlay">
+                    <span class="featured-gallery-category">Personal Project</span>
+                    <h3>Building Online Sheet Music Platform</h3>
+                  </div>
+                </button>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="featured-gallery-pagination" role="tablist" aria-label="Featured projects pagination"></div>
+        </div>
+      </section>
+
+      <!-- FEATURED PROJECT MODAL -->
+      <div class="featured-project-modal" id="featured-project-modal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true">
+        <div class="featured-project-modal-backdrop" data-close-modal></div>
+        <div class="featured-project-modal-content">
+          <button class="featured-project-modal-close" type="button" aria-label="Close project details">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="featured-project-modal-body" id="featured-project-modal-body">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
       </div>
-      <br><br>
-      <p>
-        In my free time, I pursue long-term music composition projects and piano playing. I mainly compose for piano, and small ensembles, in the goal
-        to express my thoughts with sincerity. Take a look!
-      </p>
-      <br>
-      <div class="section-buttons">
-        <a class="gradient-btn" href="music.html">View My Music →</a>
-      </div>
-      <br><br>
+      <!-- END FEATURED PROJECTS GALLERY -->
 
       <!-- EXPERIENCE HIGHLIGHT: edit the text below to update this section -->
       <section class="experience-highlight" id="experience-highlight">
@@ -1032,6 +1103,290 @@
           updateIcon();
         });
       }
+    })();
+
+    (function () {
+      // FEATURED PROJECTS CONFIG
+      // Edit this array to add, remove, or change the projects shown in the gallery.
+      // Each project needs a unique id that matches its data-project attribute above.
+      const FEATURED_PROJECTS = [
+        {
+          id: 'boardgame',
+          title: 'Boardgame Accessibility',
+          category: 'Academic Project',
+          date: 'Sept. – Dec. 2025',
+          image: 'pictures/boardgame.jpg',
+          description: [
+            'Redesigned the game Battleship with a team to make it more accessible for children with dyspraxia. The project focused on applying user-centered design principles to identify accessibility barriers and develop gameplay interactions that reduce the need for fine motor control while maintaining an engaging experience.'
+          ],
+          bullets: [
+            'Applied an iterative design process including empathizing, ideation, rapid prototyping, testing, and evaluation.',
+            'Conducted quantitative analysis using Excel to compare design alternatives.',
+            'Developed a C++ program to automate normalization and metric weighting for a QFD table.'
+          ]
+        },
+        {
+          id: 'puzzle',
+          title: '3D-printed Puzzle',
+          category: 'Academic Project',
+          date: 'Sept. – Dec. 2025',
+          image: 'pictures/rock.png',
+          description: [
+            'Designed a multi-component 3D puzzle involving at least 5 unique pieces in a team setting. End product contained at least one Canadian motif.'
+          ],
+          bullets: [
+            'Worked with SolidWorks surface modeling.',
+            'Gained knowledge in working with complex shapes.',
+            'Worked with SolidWorks Assembly and error tolerance.',
+            'Presented end product in presentation.'
+          ]
+        },
+        {
+          id: 'xwing',
+          title: 'X-Wing Model',
+          category: 'Academic Project',
+          date: 'Nov. 2025',
+          image: 'pictures/xwing 1.png',
+          description: [
+            'Modeled the fictional spacecraft, X-Wing, from Star Wars the original series.'
+          ],
+          bullets: [
+            'Made calculation on pieces joints.',
+            'Gained experience with mate functions in SolidWorks.',
+            'Created accurate orthographic views and BOM table compliant to ANSI standards.'
+          ]
+        },
+        {
+          id: 'thesia',
+          title: 'Thesia - Online Browser Interactive Game',
+          category: 'Personal Project',
+          date: 'Sept. 2026 - ongoing',
+          image: 'pictures/thesia.png',
+          description: [
+            'A passion project combining music and art. THESIA is a platform where users draw on a canvas, type or paste an ASCII design, and listen to music generated from their artwork — with the freedom to assign an instrument to each symbol.',
+            'It also includes a multiplayer game supporting up to 10 players with no sign-up required. One player draws or types a melody on the canvas while others try to guess the piece.'
+          ],
+          bullets: [
+            'Used languages: HTML, CSS, JavaScript',
+            'Employed Node.js for multiplayer aspects and Socket.IO for real-time communication.',
+            'Used GitHub Pages and Render for hosting.'
+          ],
+          link: 'https://wrenlepus.github.io/thesia/',
+          linkText: 'View Game →'
+        },
+        {
+          id: 'sheetmusic',
+          title: 'Building Online Sheet Music Platform',
+          category: 'Personal Project',
+          date: '2026 - ongoing',
+          image: 'pictures/lepusmusic.png',
+          description: [
+            'As a passion project, I am currently working on building a website to host my original sheet music compositions. The goal of this website will be to allow users to preview/sample and download my sheet music through an e-commerce style interface.'
+          ],
+          bullets: [
+            'Node.js and React for frontend',
+            'Stripe for payment processing',
+            'Clerk for authentication',
+            'Docker for localhosting',
+            'Postgres + DBeaver for local database testing'
+          ]
+        },
+        {
+          id: 'models',
+          title: 'Models & Sketches',
+          category: 'Personal Project',
+          date: '2018 - 2025',
+          image: 'pictures/mechanism.png',
+          description: [
+            'From a young age, I was fascinated by mechanical design and construction. I created my own models using materials found at home, which allowed me to learn hands-on building techniques while developing my spatial reasoning and sketching skills.'
+          ],
+          bullets: [],
+          link: 'https://drive.google.com/file/d/1PmIrMeL_rU-PflPFj-_I5v-DIA6B6uFj/view?usp=sharing',
+          linkText: 'View Images →'
+        }
+      ];
+
+      const modal = document.getElementById('featured-project-modal');
+      const modalBody = document.getElementById('featured-project-modal-body');
+      const galleryCards = document.querySelectorAll('.featured-gallery-card');
+      const closeBtn = modal ? modal.querySelector('.featured-project-modal-close') : null;
+      const backdrop = modal ? modal.querySelector('.featured-project-modal-backdrop') : null;
+      let previousFocus = null;
+
+      function findProject(id) {
+        return FEATURED_PROJECTS.find(function (project) { return project.id === id; });
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function buildProjectCard(project) {
+        const descriptionHtml = project.description.map(function (p) {
+          return '<p>' + escapeHtml(p) + '</p>';
+        }).join('');
+
+        const bulletsHtml = project.bullets && project.bullets.length
+          ? '<ul>' + project.bullets.map(function (b) { return '<li>' + escapeHtml(b) + '</li>'; }).join('') + '</ul>'
+          : '';
+
+        const linkHtml = project.link
+          ? '<div class="section-buttons"><a class="gradient-btn" href="' + escapeHtml(project.link) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(project.linkText || 'View Project →') + '</a></div>'
+          : '';
+
+        return [
+          '<img src="' + escapeHtml(project.image) + '" alt="' + escapeHtml(project.title) + ' preview">',
+          '<span class="featured-project-modal-category">' + escapeHtml(project.category) + '</span>',
+          '<h3>' + escapeHtml(project.title) + '</h3>',
+          '<p class="featured-project-modal-date">' + escapeHtml(project.date) + '</p>',
+          '<div class="featured-project-modal-description">',
+          descriptionHtml,
+          '</div>',
+          bulletsHtml,
+          linkHtml
+        ].join('');
+      }
+
+      function openModal(projectId) {
+        const project = findProject(projectId);
+        if (!project || !modal || !modalBody) return;
+
+        previousFocus = document.activeElement;
+        modalBody.innerHTML = buildProjectCard(project);
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        requestAnimationFrame(function () {
+          if (modal.classList.contains('active') && closeBtn) {
+            closeBtn.focus({ preventScroll: true });
+          }
+        });
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        if (previousFocus && typeof previousFocus.focus === 'function') {
+          previousFocus.focus();
+        }
+      }
+
+      // Pagination dots
+      const galleryWrap = document.querySelector('.featured-gallery-wrap');
+      const scroller = document.querySelector('.featured-gallery-scroll');
+      const track = document.querySelector('.featured-gallery-track');
+      const items = Array.from(document.querySelectorAll('.featured-gallery-item'));
+      const pagination = document.querySelector('.featured-gallery-pagination');
+      let dotButtons = [];
+
+      function getItemScrollLeft(index) {
+        if (!items[index]) return 0;
+        const itemLeft = items[index].offsetLeft;
+        const scrollerWidth = scroller.clientWidth;
+        const itemWidth = items[index].clientWidth;
+        return itemLeft - (scrollerWidth - itemWidth) / 2;
+      }
+
+      function updateActiveDot() {
+        if (!scroller || !items.length) return;
+        const scrollCenter = scroller.scrollLeft + scroller.clientWidth / 2;
+        let activeIndex = 0;
+        let closestDistance = Infinity;
+
+        items.forEach(function (item, index) {
+          const itemCenter = item.offsetLeft + item.clientWidth / 2;
+          const distance = Math.abs(scrollCenter - itemCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        dotButtons.forEach(function (button, index) {
+          const isActive = index === activeIndex;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          button.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+      }
+
+      function scrollToItem(index) {
+        if (!scroller || !items[index]) return;
+        const targetScroll = getItemScrollLeft(index);
+        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+        scroller.scrollTo({
+          left: Math.max(0, Math.min(targetScroll, maxScroll)),
+          behavior: 'smooth'
+        });
+      }
+
+      function buildPagination() {
+        if (!pagination) return;
+        pagination.innerHTML = '';
+        dotButtons = items.map(function (item, index) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'featured-gallery-dot';
+          button.setAttribute('role', 'tab');
+          button.setAttribute('aria-label', 'Go to project ' + (index + 1));
+          button.setAttribute('aria-selected', 'false');
+          button.setAttribute('tabindex', '-1');
+          button.addEventListener('click', function () {
+            scrollToItem(index);
+          });
+          pagination.appendChild(button);
+          return button;
+        });
+        updateActiveDot();
+      }
+
+      galleryCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          const item = card.closest('.featured-gallery-item');
+          if (item && item.dataset.project) {
+            openModal(item.dataset.project);
+          }
+        });
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      if (backdrop) {
+        backdrop.addEventListener('click', closeModal);
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (!modal || !modal.classList.contains('active')) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModal();
+        }
+      });
+
+      if (scroller) {
+        let scrollTimeout;
+        scroller.addEventListener('scroll', function () {
+          window.clearTimeout(scrollTimeout);
+          scrollTimeout = window.setTimeout(updateActiveDot, 50);
+        }, { passive: true });
+      }
+
+      window.addEventListener('resize', function () {
+        updateActiveDot();
+      });
+
+      buildPagination();
     })();
   </script>
 
